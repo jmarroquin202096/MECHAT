@@ -11,7 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PharmacyComponent } from './components/pharmacy/pharmacy.component';
 import { RecordatoriosComponent } from './components/recordatorios/recordatorios.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegistroComponent } from './components/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -26,7 +26,7 @@ import { ChatComponent } from './components/chat/chat.component';
     PharmacyComponent,
     RecordatoriosComponent,
     LoginComponent,
-    RegisterComponent,
+    RegistroComponent,
     ErrorComponent,
     AboutComponent,
     ProfileComponent,
