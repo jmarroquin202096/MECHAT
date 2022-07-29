@@ -20,6 +20,7 @@ export class RegistroComponent implements OnInit {
     this.usuarioModel = new Usuario(
       "",
       "",
+      "",
       ""
     );
   }
@@ -39,7 +40,7 @@ export class RegistroComponent implements OnInit {
         }).then((result) => {
           this._router.navigate(['/login']);
           console.log(response);
-          this.usuarioModelPost.correo = '',
+          this.usuarioModelPost.email = '',
             this.usuarioModelPost.password = ''
 
         });

@@ -47,52 +47,27 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr>
+                  <tr *ngFor="let rec of recordatoriosModelGet">
                       <td class="item">
                           <div class="d-flex">
                               <div class="pl-2">
-                                  Tapcin Extra Fuerte
+                                  {{rec.medicina}}
                               </div>
                           </div>
                       </td>
-                      <td>2</td>
-                      <td class="d-flex flex-column">Cada 8 horas 2 pastillas.</td>
+                      <td>
+                        {{rec.cantidad}}
+                      </td>
+                      <td class="d-flex flex-column">
+                        {{rec.descripcion}}
+                      </td>
                       <td>
                         <div class="form-check">
                         <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
                         </div>
                       </td>
                   </tr>
-                  <tr>
-                      <td class="item">
-                          <div class="d-flex align-items-start">
-                              <div>ALKA-SELTZER EXTREME BOOST</div>
-                          </div>
-                      </td>
-                      <td>3</td>
-                      <td class="d-flex flex-column">1 cada vez que sienta dolor y con un vaso de agua pura</td>
-                      <td>
-                        <div class="form-check">
-                        <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                        </div>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td class="item">
-                          <div class="d-flex align-items-start">
-                              <div>
-                                  Acetaminofen
-                              </div>
-                          </div>
-                      </td>
-                      <td>8</td>
-                      <td class="d-flex flex-column">2 cada 4 horas</td>
-                      <td>
-                        <div class="form-check">
-                        <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                        </div>
-                      </td>
-                  </tr>
+                  
               </tbody>
           </table>
       </div>

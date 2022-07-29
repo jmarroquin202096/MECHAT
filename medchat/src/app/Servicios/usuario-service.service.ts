@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario.model';
+import { Recordatorio } from '../models/recordatorio.model';
 
 
 @Injectable({
@@ -56,4 +57,31 @@ export class UsuarioServiceService {
 
     return this.identidad;
   }
+  obtenerRecordatorios(token){ 
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.get(this.url + '/obtenerRecordatorios', { headers: headersToken});
+  }
+  otbenerPacientes(token){
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.get(this.url + '/VerPacientes', { headers: headersToken});
+  }
+  obtnerUserId(id){
+    
+
+    return this._http.get(this.url + '/buscarUserId/'+ id, { headers: this.headersVariable});
+
+  }
+  agregarRecordatorio(id, token, modeloRecordatorio: Recordatorio){
+    let parametros = JSON.stringify(modeloRecordatorio);
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+
+    return this._http.post(this.url + '/agregarRecordatorio/'+ id, parametros,{ headers: headersToken});
+
+  }
+
+
+
 }
