@@ -57,7 +57,7 @@ export class UsuarioServiceService {
 
     return this.identidad;
   }
-  obtenerRecordatorios(token){ 
+  obtenerRecordatorios(token){
     let headersToken = this.headersVariable.set('Authorization', token);
 
     return this._http.get(this.url + '/obtenerRecordatorios', { headers: headersToken});
@@ -68,7 +68,7 @@ export class UsuarioServiceService {
     return this._http.get(this.url + '/VerPacientes', { headers: headersToken});
   }
   obtnerUserId(id){
-    
+
 
     return this._http.get(this.url + '/buscarUserId/'+ id, { headers: this.headersVariable});
 
@@ -83,13 +83,16 @@ export class UsuarioServiceService {
   }
   editarUsuario(token, modeloUsuario: Usuario){
     let parametros = JSON.stringify(modeloUsuario)
-    
+
     let headersToken = this.headersVariable.set('Authorization', token);
 
     return this._http.put(this.url + '/EditarPerfil', parametros,{ headers: headersToken});
 
   }
 
-
+  eliminarUsuario(token) {
+    let headersToken = this.headersVariable.set('Authorization', token);
+    return this._http.delete(this.url + '/EliminarPerfil', { headers: headersToken});
+  }
 
 }

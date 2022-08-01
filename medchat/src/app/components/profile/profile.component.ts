@@ -12,13 +12,14 @@ import Swal from 'sweetalert2';
 export class ProfileComponent implements OnInit {
   public token;
   public identidad;
-  public recordatorioModelPost: Recordatorio;  
+  public recordatorioModelPost: Recordatorio;
   public usuarioLogeado : Usuario;
   public usuarioModelGetiId: Usuario;
   public usuarioModelUpdate: Usuario;
+  public usuarioModelDelete: Usuario;
   public usuarioModelGet: any;
 
-  public id: String; 
+  public id: String;
   constructor(private _usuarioService: UsuarioServiceService) {
     this.token = _usuarioService.getToken()
     this.recordatorioModelPost = new Recordatorio(
@@ -33,9 +34,9 @@ export class ProfileComponent implements OnInit {
       '',
       '',
       '',
-      '', 
+      '',
       ''
-    ), 
+    ),
     this.usuarioModelUpdate = new Usuario(
       '',
       '',
@@ -58,11 +59,11 @@ export class ProfileComponent implements OnInit {
       next: (response : any)=>{
         this.usuarioModelGetiId = response.usuario
         console.log(this.usuarioModelGetiId._id);
-                
-      }, 
+
+      },
       error: (err)=>{
         console.log(err);
-        
+
       }
     })
   }
@@ -73,39 +74,109 @@ export class ProfileComponent implements OnInit {
       },
       error: (err)=>{
         console.log(err);
-        
+
       }
     })
   }
   postRecordatorio(){
     this._usuarioService.agregarRecordatorio(this.usuarioModelGetiId._id, this.token, this.recordatorioModelPost).subscribe({
-    
+
       next: (response: any)=>{
         console.log(response);
-        
+
       },
       error: (err)=>{
         console.log(err);
         console.log(this.usuarioModelGetiId._id);
-        
+
       }
     })
   }
+
   putUser(){
     this._usuarioService.editarUsuario(this.token, this.usuarioLogeado).subscribe({
       next: (response: any)=>{
-        Swal.fire(
-          'Usuario editado',
-          'success'
-        )
-      
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+          title: '¿Quieres Actualizar?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si!',
+          cancelButtonText: 'No!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              'Actualizado!',
+              'Se Actualizo Correctamente',
+              'success'
+            )
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'No se Actualizo su Perfil :)',
+              'error'
+            )
+          }
+        })
+
         localStorage.setItem('identidad', JSON.stringify(response.usuarioEditado));
-       
-        
+
+
       },
       error: (err)=>{
         console.log(err);
-        
+
+      }
+    })
+  }
+
+  deleteUser() {
+    this._usuarioService.eliminarUsuario(this.token).subscribe({
+      next: (response: any)=>{
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+          },
+          buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+          title: '¿Quieres Eliminar?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si!',
+          cancelButtonText: 'No!',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+              'Eliminado!',
+              'Se Elimino exitosamente! :)',
+              'success'
+            )
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'No se Elimino sus Perfil!',
+              'error'
+            )
+          }
+        })
       }
     })
   }

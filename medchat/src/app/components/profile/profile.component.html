@@ -9,8 +9,7 @@
       <div class="row">
         <div class="col-lg-7 col-md-10">
           <h1 class="display-2 text-white">Hola {{identidad.nombre}}</h1>
-          <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work
-            and manage your projects or assigned tasks</p>
+          <p class="text-white mt-0 mb-5">La inteligencia consiste no sólo en el conocimiento, sino también en la destreza de aplicar los conocimientos en la práctica - "Aristóteles"</p>
         </div>
       </div>
     </div>
@@ -43,18 +42,6 @@
             <div class="row">
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                  <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -80,8 +67,8 @@
                 <h3 class="mb-0">My account</h3>
               </div>
               <div class="col-4 text-right">
-                <a  class="btn btn-sm btn-primary" (click)="putUser()">Edit Profile</a>
-                <a href="#!" class="btn btn-sm btn-primary">Delete Profile</a>
+                <a class="btn btn-sm btn-primary" (click)="putUser()">Editar Perfil</a>
+                <a class="btn btn-sm btn-primary" (click)="deleteUser()">Eliminar Perfil</a>
               </div>
             </div>
           </div>
@@ -114,7 +101,7 @@
                         placeholder="Contraseña" name="password" #password="ngModel" [(ngModel)]="usuarioLogeado.password" >
                     </div>
                   </div>
-                  
+
                 </div>
               </div>
               <hr class="my-4">
