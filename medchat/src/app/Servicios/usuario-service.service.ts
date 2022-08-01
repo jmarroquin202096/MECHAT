@@ -81,6 +81,14 @@ export class UsuarioServiceService {
     return this._http.post(this.url + '/agregarRecordatorio/'+ id, parametros,{ headers: headersToken});
 
   }
+  editarUsuario(token, modeloUsuario: Usuario){
+    let parametros = JSON.stringify(modeloUsuario)
+    
+    let headersToken = this.headersVariable.set('Authorization', token);
+
+    return this._http.put(this.url + '/EditarPerfil', parametros,{ headers: headersToken});
+
+  }
 
 
 
