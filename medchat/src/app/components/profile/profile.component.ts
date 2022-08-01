@@ -3,6 +3,7 @@ import { Recordatorio } from 'src/app/models/recordatorio.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioServiceService } from 'src/app/Servicios/usuario-service.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -19,8 +20,9 @@ export class ProfileComponent implements OnInit {
   public usuarioModelDelete: Usuario;
   public usuarioModelGet: any;
 
+
   public id: String;
-  constructor(private _usuarioService: UsuarioServiceService) {
+  constructor(private _usuarioService: UsuarioServiceService,  private _router: Router) {
     this.token = _usuarioService.getToken()
     this.recordatorioModelPost = new Recordatorio(
       '',
@@ -94,90 +96,78 @@ export class ProfileComponent implements OnInit {
   }
 
   putUser(){
-    this._usuarioService.editarUsuario(this.token, this.usuarioLogeado).subscribe({
-      next: (response: any)=>{
-        const swalWithBootstrapButtons = Swal.mixin({
-          customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-          },
-          buttonsStyling: false
-        })
+    Swal.fire({
+      title: 'Desea editar el usuario',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'SI'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._usuarioService.editarUsuario(this.token, this.usuarioLogeado).subscribe({
+          next: (response: any)=>{      
+              localStorage.setItem('identidad', JSON.stringify(response.usuarioEditado))
 
-        swalWithBootstrapButtons.fire({
-          title: '¿Quieres Actualizar?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Si!',
-          cancelButtonText: 'No!',
-          reverseButtons: true
-        }).then((result) => {
-          if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire(
-              'Actualizado!',
-              'Se Actualizo Correctamente',
-              'success'
-            )
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire(
-              'Cancelado',
-              'No se Actualizo su Perfil :)',
-              'error'
-            )
+          },
+          error: (err)=>{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Hubo un error',
+            })
+
           }
         })
-
-        localStorage.setItem('identidad', JSON.stringify(response.usuarioEditado));
-
-
-      },
-      error: (err)=>{
-        console.log(err);
+        Swal.fire(
+          'Editado',
+          'usuario editado',
+          'success'
+        )
+      }else{
+        Swal.fire('Cancelado')
 
       }
     })
   }
 
   deleteUser() {
-    this._usuarioService.eliminarUsuario(this.token).subscribe({
-      next: (response: any)=>{
-        const swalWithBootstrapButtons = Swal.mixin({
-          customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-          },
-          buttonsStyling: false
-        })
+      Swal.fire({
+        title: 'Desea eliminar el usuario',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'SI'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this._router.navigate(['/login']);
+          localStorage.clear()
+          this._usuarioService.eliminarUsuario(this.token).subscribe({
+            next: (response: any)=>{
+            },
+            error: (err)=>{
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Hubo un error',
+              })
+  
+            }
+          })
+          Swal.fire(
+            'Eliminado',
+            'usuario eliminado',
+            'success'
+          ).then((o)=>{
+            this._router.navigate(['/login']);
 
-        swalWithBootstrapButtons.fire({
-          title: '¿Quieres Eliminar?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonText: 'Si!',
-          cancelButtonText: 'No!',
-          reverseButtons: true
-        }).then((result) => {
-          if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire(
-              'Eliminado!',
-              'Se Elimino exitosamente! :)',
-              'success'
-            )
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
-            swalWithBootstrapButtons.fire(
-              'Cancelado',
-              'No se Elimino sus Perfil!',
-              'error'
-            )
-          }
-        })
-      }
-    })
-  }
+          })
+        }else{
+          Swal.fire('Cancelado')
+  
+        }
+      })
+    }
+  
 }

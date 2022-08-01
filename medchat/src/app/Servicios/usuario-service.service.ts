@@ -83,7 +83,10 @@ export class UsuarioServiceService {
   }
   editarUsuario(token, modeloUsuario: Usuario){
     let parametros = JSON.stringify(modeloUsuario)
-
+    console.log(parametros);
+    console.log(token);
+    
+    
     let headersToken = this.headersVariable.set('Authorization', token);
 
     return this._http.put(this.url + '/EditarPerfil', parametros,{ headers: headersToken});

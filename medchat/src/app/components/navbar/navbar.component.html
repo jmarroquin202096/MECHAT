@@ -8,7 +8,7 @@
         </a>
       </li>
       <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link" routerLink="recordatorios" routerLinkActive="active">
+        <a class="nav-link" routerLink="recordatorios" routerLinkActive="active"   *ngIf="_usuarioService.getIdentidad()">
           <i class="bi bi-person-lines-fill"></i> Recordatorios
         </a>
       </li>
@@ -18,12 +18,12 @@
         </a>
       </li>
       <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link" routerLink="chat" routerLinkActive="active">
-          <i class="bi bi-chat"></i> Chat
+        <a class="nav-link" routerLink="chat" routerLinkActive="active"*ngIf="_usuarioService.getIdentidad()">
+          <i class="bi bi-chat"  ></i> Chat
         </a>
       </li>
       <li class="nav-item me-3 me-lg-0">
-        <a class="nav-link" routerLink="profile" routerLinkActive="active">
+        <a class="nav-link" routerLink="profile" routerLinkActive="active"  *ngIf="_usuarioService.getIdentidad()">
           <i class="bi bi-person-circle"></i> Perfil
         </a>
       </li>
