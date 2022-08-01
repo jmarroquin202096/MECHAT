@@ -1,88 +1,79 @@
-<body>
-  <div class="container-fluid name-room">
-    <div class="row">
-    <div class="col-sm-5">
-        <div class="form-group">
-            <label for="username">Name</label>
-            <input type="text"  class="form-control" id="username" placeholder="Enter username" disabled>
-         </div>
-    </div>
-    <div class="col-sm-5">
-        <label for="roomInput">Choose room</label>
-        <select name="roomInput"  id="roomInput" class="form-control" >
-            <option value="Email Marketing">Email Marketing</option>
-            <option value="Dsv & Preview">Dsv & Preview</option>
-            <option value="Creative">Creative</option>
-        </select>
-    </div>
-    <div class="col-sm-2">
-        <div style="margin-top:19px;" class="pull-right">
+<main class="content">
+  <div class="container p-0">
+  <div class="card">
+    <div class="row g-0">
+      <div class="col-12 col-lg-5 col-xl-3 border-right">
 
-            <button  type="button" class="btn btn-success">Join Room</button>
-
-            <button  type="button" class="btn btn-danger" >Leave Room</button>
-        </div>
-    </div>
-</div>
-</div>
-
-
-<div class="container-fluid name-room">
-    <div class="row">
-      <div class="col-sm-3 col-xs-12">
-        <div class="col-inside-lg decor-default chat" style="overflow: hidden; outline: none;" tabindex="5000">
-          <div class="chat-users">
-            <h6>Online</h6>
-
-
-              <div class="user">
-                  <div class="avatar">
-                  <div class="status online"></div>
-                  </div>
-                  <div class="name" ></div>
-                  <!--<div class="mood">User mood</div>-->
+        <div class="px-4 d-none d-md-block">
+          <div class="d-flex align-items-center">
+            <div class="flex-grow-1">
+              <input type="text" class="form-control my-3" placeholder="Search...">
             </div>
-
-
           </div>
         </div>
+
+        <a class="list-group-item list-group-item-action border-0">
+          <div class="d-flex align-items-start">
+            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+            <div class="flex-grow-1 ml-3">
+
+            </div>
+          </div>
+        </a>
+
+        <hr class="d-block d-lg-none mt-1 mb-0">
       </div>
-      <div class="col-sm-9 col-xs-12 chat" style="overflow: hidden; outline: none;" tabindex="5001">
-        <div class="col-inside-lg decor-default">
-          <div class="chat-body">
-            <h6>Mini Chat</h6>
-          <div #list class="list" [scrollTop]="list.scrollHeight">
-            <div >
-              <div class="avatar">
-                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                <div class="status offline"></div>
-              </div>
-              <div class="name"></div>
-              <div class="text">
-
-              </div>
-              <div class="time"></div>
+      <div class="col-12 col-lg-7 col-xl-9">
+        <div class="py-2 px-4 border-bottom d-none d-lg-block">
+          <div class="d-flex align-items-center py-1">
+            <div class="position-relative">
+              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
             </div>
-            <div >
-                    <div class="avatar">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User name">
-                      <div class="status offline"></div>
-                    </div>
-                    <div class="name"></div>
-                    <div class="text">
-
-                    </div>
-                    <div ></div>
+            <div class="flex-grow-1 pl-3">
+              <strong>{{usuarioLogeado.nombre}}</strong>
             </div>
+            <div>
+              <button class="btn btn-primary btn-lg mr-1 px-3"><i class="bi bi-telephone"></i></button>
+              <button class="btn btn-info btn-lg mr-1 px-3 d-none d-md-inline-block"><i class="bi bi-camera-video"></i></button>
+              <button class="btn btn-light border btn-lg px-3"><i class="bi bi-list"></i></button>
             </div>
-            <p></p>
-            <div class="answer-add">
-            <input type="text" class="form-control" placeholder="Write a message">
-            </div>
-
           </div>
         </div>
+
+        <div class="position-relative">
+          <div class="chat-messages p-4">
+
+            <div class="chat-message-right pb-4">
+              <div>
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+              </div>
+              <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                <div class="font-weight-bold mb-1">{{usuarioLogeado.nombre}}</div>
+
+              </div>
+            </div>
+
+            <div class="chat-message-left pb-4">
+              <div>
+                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+              </div>
+              <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
+                <div class="font-weight-bold mb-1">Sharon Lessman</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-grow-0 py-3 px-4 border-top">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Type your message">
+            <button class="btn btn-primary"><i class="bi bi-send"></i></button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
-</body>
+</div>
+</main>
