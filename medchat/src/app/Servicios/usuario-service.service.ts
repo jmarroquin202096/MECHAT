@@ -12,7 +12,7 @@ import { Chat } from '../models/chat.model';
 export class UsuarioServiceService {
 
 
-  public url : String = 'http://localhost:3000/api';
+  public url : String = 'https://backend-meedchat.herokuapp.com/api';
   public headersVariable = new HttpHeaders().set('Content-Type', 'application/json');
   public token;
   public identidad;
