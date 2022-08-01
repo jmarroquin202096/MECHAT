@@ -11,7 +11,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ChatComponent} from './components/chat/chat.component';
 
 const routes: Routes = [
-  {path: ' ', component: InicioComponent},
+  {path: '', component: InicioComponent},
+  {path: 'inicio', component: InicioComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'pharmacy', component:PharmacyComponent},

@@ -33,8 +33,8 @@
           </div>
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-sm btn-info mr-4">Recordatorios</a>
-              <a href="#" class="btn btn-sm btn-default float-right">Chat</a>
+              <a class="nav-link" [routerLink]="['/recordatorios']" routerLinkActive="active" class="btn btn-sm btn-info mr-4">Recordatorios</a>
+              <a class="nav-link" [routerLink]="['/chat']" routerLinkActive="active" class="btn btn-sm btn-default float-right">Chat</a>
               <a style="color: #FFFF;" class="btn btn-sm btn-default float-right" (click)="obtenerPacientes()" data-bs-toggle="modal" data-bs-target="#verUsuarios" *ngIf="identidad.rol == 'Doctor'">Agregar recordatorio</a>
 
             </div>
